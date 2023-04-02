@@ -13,9 +13,82 @@
             border: 2px solid white;
             padding: 1rem;
         }
+        
+        .loding_page {
+        
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            font-size: 60px;
+            background-color: #010911;
+            
+            
+        }
+
+        #loding_button {
+            font-size: 40px;
+            font-weight: bolder;
+            padding: 10px;
+            border: none;
+            border-radius: 30px;
+            background-color: transparent;
+            color: #D6DBDF;
+        }
+
+        #loding_button:hover {
+            
+            transition: 0.3s;
+            color: #F39C12;
+        }
+
+        .preloderBox {
+            margin-top: 20%;
+        }
+
+        .back-video {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        
+        @media screen and (max-width: 800px) {
+            #loding_page {
+                font-size: 30px;
+                
+            }
+
+            .preloderBox {
+                margin-top:90%;
+            }
+
+            #loding_button {
+                font-size: 30px;
+                background-color: #F39C12;
+                border-radius: 30px;
+            }
+
+            picture {
+                display: none;
+            }
+        }
 
     </style>
 <body class="bg-light">
+    
+    
+    
+    <div class="loding_page" id="loding_page">
+        <div class="preloderBox">
+            <span style="font-weight: bold; padding-right: 5px;">Chill-<span style="color: #F39C12;">Zone</span></span>
+            <button id="loding_button" @click="preloder()">
+                Explore Now
+            </button>
+        </div>
+    </div>
 
 
     
@@ -118,7 +191,10 @@
                 .then(response => response.json())
                 .then(result => this.allMovieData =  result)
                 .catch(error => console.log('error', error))                          
-        } 
+        },
+        preloder(){
+            document.getElementById("loding_page").style.display = "none"
+        }
         
     },
     beforeMount() {
